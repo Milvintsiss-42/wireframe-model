@@ -6,14 +6,14 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/02 02:43:30 by ple-stra          #+#    #+#              #
-#    Updated: 2022/01/31 07:55:50 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/01/31 09:56:21 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fdf
 
 SRCS_DIR	= srcs
-SRCS		= main.c parse_map.c errors.c
+SRCS		= main.c parse_map.c errors.c debug.c free.c
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
