@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:09:44 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/01/31 09:54:08 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/02 21:22:56 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int	ft_parse_map(t_map *map, int fd)
 	map->map = ft_realloc(map, map->height, 1);
 	if (!map->map)
 		return (0);
+	if (map->height <= 0 || map->width <= 0)
+		return (ft_perror(ERR_INV_FILE));
 	ft_display_parsed_map(*map);
 	return (1);
 }

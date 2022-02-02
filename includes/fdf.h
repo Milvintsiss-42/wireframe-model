@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/01/31 09:58:13 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/02 21:22:50 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define ERR_WRG_NB_ARG "Error: Incorrect number of arguments\n"
 # define ERR_INV_EXT "Error: Invalid file extension\n"
+# define ERR_INV_FILE "Error: Invalid file\n"
 # define ERRNO_CANT_OPEN_FILE "Error: Cannot open file"
 # define ERRNO_INSUFFICIENT_MEM "Error: Insufficient memory"
 
