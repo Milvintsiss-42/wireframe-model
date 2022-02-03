@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:54:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/01/31 09:57:34 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/03 01:29:43 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ int	ft_verify_args(int argc, char **argv)
 
 int	ft_open_map_file(char *file_path)
 {
-	return (open(file_path, O_RDONLY));
+	int	fd;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		return (ft_perror_errno(ERRNO_CANT_OPEN_FILE) - 1);
+	return (fd);
 }
 
 int	main(int argc, char **argv)
@@ -33,11 +38,13 @@ int	main(int argc, char **argv)
 	t_fdf	fdf;
 
 	if (!ft_verify_args(argc, argv))
-		return (0);
+		return (1);
 	fd = ft_open_map_file(argv[1]);
 	if (fd == -1)
-		return (ft_perror_errno(ERRNO_CANT_OPEN_FILE));
+		return (1);
 	if (!ft_parse_map(&fdf.map, fd))
-		return (0);
-	ft_freeall(fdf);
+		return (1);
+	if (!ft_display_map(&fdf))
+		return (ft_freeall(fdf) + 1);
+	return (ft_freeall(fdf));
 }

@@ -6,14 +6,15 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/02 02:43:30 by ple-stra          #+#    #+#              #
-#    Updated: 2022/01/31 09:56:21 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/02/03 02:51:04 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fdf
 
 SRCS_DIR	= srcs
-SRCS		= main.c parse_map.c errors.c debug.c free.c
+SRCS		= main.c parse_map.c errors.c debug.c free.c display_map.c\
+ keys_events.c keys_events_arrows.c
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -41,6 +42,9 @@ ifneq (nWerror, $(filter nWerror,$(MAKECMDGOALS)))
 endif
 ifeq (sanitize, $(filter sanitize,$(MAKECMDGOALS)))
 	CFLAGS	+= -fsanitize=address
+endif
+ifeq (debug, $(filter debug,$(MAKECMDGOALS)))
+	CFLAGS	+= -D KDEBUG=1
 endif
 
 GIT_SUBM	= $(shell \
@@ -101,4 +105,6 @@ nWerror:
 			@echo "WARN: Werror is disabled"
 sanitize:
 			@echo "WARN: fsanitize is enabled"
-.PHONY: all clean fclean fcleanall re reall rmlibft rmmlx nWerror sanitize
+debug:
+			@echo "WARN: debug is enabled"
+.PHONY: all clean fclean fcleanall re reall rmlibft rmmlx nWerror sanitize debug
