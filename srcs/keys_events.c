@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 02:15:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/03 03:13:32 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/24 19:43:52 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_on_keypressed(int key, t_fdf *fdf)
 {
 	if (KDEBUG)
-		printf("Pressed key: %#x\n", key);
+		ft_printf("Pressed key: %#x\n", key);
 	if (key == KEY_ECHAP)
 		ft_on_echap_keypressed(fdf);
 	else if (key == KEY_ARROW_L)
