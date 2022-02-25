@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:42:21 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/24 19:42:51 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/24 21:12:44 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_display_parsed_map(t_map map)
 	{
 		j = -1;
 		while (++j < map.width)
-			ft_printf("| %d ", map.map[i][j]);
+			ft_printf("| %02d ", map.map[i][j]);
 		ft_printf("|\n");
 	}
 	ft_printf("\n//////////////////////////////////////////////////\n\n");
