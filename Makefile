@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/02 02:43:30 by ple-stra          #+#    #+#              #
-#    Updated: 2022/02/25 07:34:12 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/02/27 22:41:38 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		= fdf
 
 SRCS_DIR	= srcs
 SRCS		= main.c parse_map.c errors.c debug.c free.c display_map.c\
- keys_events.c keys_events_arrows.c mlx_utils.c img_garbage.c draw.c
+ keys_events.c keys_events_arrows.c keys_events_zoom.c\
+ mlx_utils.c img_garbage.c draw.c draw_utils.c
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/25 07:33:21 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/27 23:18:04 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <math.h>
 
 # define PROGRAM_NAME "fdf"
+
+# define FSCREEN_DIVIDOR	50
+# define ZINCREMENT			2
 
 # define ERR_WRG_NB_ARG			"Error: Incorrect number of arguments\n"
 # define ERR_INV_EXT			"Error: Invalid file extension\n"
@@ -40,6 +43,9 @@
 # define KEY_ARROW_L	0xff51
 # define KEY_ARROW_R	0xff53
 # define KEY_ARROW_T	0xff52
+# define KEY_ARROW_D	0xff54
+# define KEY_MINUS		0x002d
+# define KEY_PLUS		0x003d
 # define KEY_ARROW_D	0xff54
 
 # ifndef KDEBUG
@@ -83,6 +89,7 @@ typedef struct s_draw {
 	int		zm;
 	int		tx;
 	int		ty;
+	int		fscreen;
 }	t_draw;
 
 typedef struct s_fdf {
@@ -110,11 +117,13 @@ void		ft_reframe(t_fdf *fdf);
 void		ft_draw(t_fdf *fdf, t_img *img);
 
 int			ft_on_keypressed(int key, t_fdf *fdf);
-int			ft_on_echap_keypressed(t_fdf *fdf);
-int			ft_on_arrowl_keypressed(t_fdf *fdf);
-int			ft_on_arrowr_keypressed(t_fdf *fdf);
-int			ft_on_arrowt_keypressed(t_fdf *fdf);
-int			ft_on_arrowd_keypressed(t_fdf *fdf);
+void		ft_on_echap_keypressed(t_fdf *fdf);
+void		ft_on_arrowl_keypressed(t_fdf *fdf);
+void		ft_on_arrowr_keypressed(t_fdf *fdf);
+void		ft_on_arrowt_keypressed(t_fdf *fdf);
+void		ft_on_arrowd_keypressed(t_fdf *fdf);
+void		ft_on_plus_keypressed(t_fdf *fdf);
+void		ft_on_minus_keypressed(t_fdf *fdf);
 
 t_img		ft_create_empty_img(t_fdf fdf);
 t_img		ft_get_null_img(void);
@@ -122,7 +131,12 @@ void		ft_create_new_fdf_img(t_fdf *fdf);
 void		ft_set_future_fdf_img(t_fdf *fdf, t_img img);
 void		ft_set_new_img_to_screen(t_fdf *fdf);
 
-void		ft_put_pixel_on_img(t_img img, int x, int y, int color);
-void		ft_draw_line(t_img img, t_point p1, t_point p2);
+void		ft_init_fdf_draw_helpers(t_fdf *fdf);
+int			ft_compute_center_x(t_fdf *fdf);
+int			ft_compute_center_y(t_fdf *fdf);
+void		ft_update_zoom(t_fdf *fdf, int zoom);
+
+void		ft_put_pixel_on_img(t_fdf *fdf, int x, int y, int color);
+void		ft_draw_line(t_fdf *fdf, t_point p1, t_point p2);
 
 #endif

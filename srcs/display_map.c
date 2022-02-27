@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:55:02 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/25 07:25:58 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/27 23:09:51 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ static void	ft_create_window(t_fdf *fdf)
 			PROGRAM_NAME);
 	if (!mlx->window)
 		ft_exit(*fdf, ft_perror(ERR_FAILED_OP_WIN_MLX));
-}
-
-static void	ft_init_fdf_draw_helpers(t_fdf *fdf)
-{
-	t_draw	*draw;
-
-	draw = &fdf->draw;
-	draw->zm = ft_min(fdf->mlx.win_width / (fdf->map.width - 1),
-			fdf->mlx.win_height / (fdf->map.height - 1)) / 2;
-	draw->tx = fdf->mlx.win_width / 2 - (fdf->map.width / 2 * draw->zm);
-	draw->ty = fdf->mlx.win_height / 2 - (fdf->map.height / 2 * draw->zm);
 }
 
 void	ft_display_map(t_fdf *fdf)

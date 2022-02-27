@@ -6,18 +6,25 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:31:31 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/25 05:34:03 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/27 20:43:20 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_put_pixel_on_img(t_img img, int x, int y, int color)
+void	ft_put_pixel_on_img(t_fdf *fdf, int x, int y, int color)
 {
+	t_img	img;
 	char	*dest;
 
-	dest = img.addr + (y * img.line_len + x * (img.bits_per_pixel / 8));
-	*(unsigned int *)dest = color;
+	img = fdf->img.future;
+	x += fdf->draw.tx;
+	y += fdf->draw.ty;
+	if (x >= 0 && x < fdf->mlx.win_width && y >= 0 && y < fdf->mlx.win_height)
+	{
+		dest = img.addr + (y * img.line_len + x * (img.bits_per_pixel / 8));
+		*(unsigned int *)dest = color;
+	}
 }
 
 double	ft_positive(double x)
@@ -27,7 +34,7 @@ double	ft_positive(double x)
 	return (x);
 }
 
-void	ft_draw_line(t_img img, t_point p1, t_point p2)
+void	ft_draw_line(t_fdf *fdf, t_point p1, t_point p2)
 {
 	double	max_dist;
 	double	dirx;
@@ -35,6 +42,10 @@ void	ft_draw_line(t_img img, t_point p1, t_point p2)
 	double	distx;
 	double	disty;
 
+	p1.x *= fdf->draw.zm;
+	p1.y *= fdf->draw.zm;
+	p2.x *= fdf->draw.zm;
+	p2.y *= fdf->draw.zm;
 	distx = ft_positive(p2.x - p1.x);
 	disty = ft_positive(p2.y - p1.y);
 	max_dist = ft_max((int)distx, (int)disty);
@@ -44,7 +55,7 @@ void	ft_draw_line(t_img img, t_point p1, t_point p2)
 	diry *= disty / max_dist;
 	while (max_dist--)
 	{
-		ft_put_pixel_on_img(img, (int)p1.x, (int)p1.y, WHITE);
+		ft_put_pixel_on_img(fdf, (int)p1.x, (int)p1.y, WHITE);
 		p1.x += dirx;
 		p1.y += diry;
 	}

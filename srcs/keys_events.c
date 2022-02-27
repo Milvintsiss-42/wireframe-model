@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 02:15:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/24 20:12:31 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/27 21:53:35 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,15 @@ int	ft_on_keypressed(int key, t_fdf *fdf)
 		ft_on_arrowt_keypressed(fdf);
 	else if (key == KEY_ARROW_D)
 		ft_on_arrowd_keypressed(fdf);
+	else if (key == KEY_PLUS)
+		ft_on_plus_keypressed(fdf);
+	else if (key == KEY_MINUS)
+		ft_on_minus_keypressed(fdf);
 	ft_reframe(fdf);
+	return (0);
 }
 
-int	ft_on_echap_keypressed(t_fdf *fdf)
+void	ft_on_echap_keypressed(t_fdf *fdf)
 {
 	if (KDEBUG)
 		ft_putstr("ECHAP key pressed \n");
