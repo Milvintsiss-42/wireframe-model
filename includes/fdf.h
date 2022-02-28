@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/28 15:02:06 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:04:24 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,17 @@
 #  define KDEBUG 0
 # endif
 
-typedef struct s_point {
+typedef struct s_2dpoint {
+	double	x;
+	double	y;
+	int		color;
+}	t_2dpt;
+
+typedef struct s_3dpoint {
 	double	x;
 	double	y;
 	double	z;
-	int		color;
-}	t_point;
+}	t_3dpt;
 
 typedef struct s_map {
 	int	height;
@@ -89,6 +94,9 @@ typedef struct s_draw {
 	int		zm;
 	int		tx;
 	int		ty;
+	int		rx;
+	int		ry;
+	int		rz;
 	int		fscreen;
 }	t_draw;
 
@@ -132,11 +140,11 @@ void		ft_set_future_fdf_img(t_fdf *fdf, t_img img);
 void		ft_set_new_img_to_screen(t_fdf *fdf);
 
 void		ft_init_fdf_draw_helpers(t_fdf *fdf);
-int			ft_compute_center_x(t_fdf *fdf);
-int			ft_compute_center_y(t_fdf *fdf);
 void		ft_update_zoom(t_fdf *fdf, int zoom);
 
 void		ft_put_pixel_on_img(t_fdf *fdf, int x, int y, int color);
-void		ft_draw_line(t_fdf *fdf, t_point p1, t_point p2);
+void		ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2);
+
+t_2dpt		pt2d_from_pt3d(t_fdf *fdf, t_3dpt pt3d);
 
 #endif

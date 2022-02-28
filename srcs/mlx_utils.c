@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:31:31 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/27 20:43:20 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:23:19 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double	ft_positive(double x)
 	return (x);
 }
 
-void	ft_draw_line(t_fdf *fdf, t_point p1, t_point p2)
+void	ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2)
 {
 	double	max_dist;
 	double	dirx;
@@ -61,7 +61,7 @@ void	ft_draw_line(t_fdf *fdf, t_point p1, t_point p2)
 	}
 }
 
-double	ft_dist(t_point p1, t_point p2)
+double	ft_dist(t_2dpt p1, t_2dpt p2)
 {
 	return (sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2)));
 }

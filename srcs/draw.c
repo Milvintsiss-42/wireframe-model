@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 07:20:28 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/28 14:53:44 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:00:09 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,41 +35,21 @@ t_img	colored_map_img(t_fdf fdf)
 	return (img);
 }
 
-static t_point	ft_pt1(t_fdf fdf, int x, int y)
+static t_3dpt	ft_pt(t_fdf fdf, int x, int y, int z)
 {
-	t_point	pt1;
+	t_3dpt	pt;
 
-	pt1.x = x;
-	pt1.y = y;
-	pt1.z = fdf.map.map[y][x];
-	return (pt1);
-}
-
-static t_point	ft_pt2(t_fdf fdf, int x, int y)
-{
-	t_point	pt2;
-
-	pt2.x = (x + 1);
-	pt2.y = y;
-	pt2.z = fdf.map.map[y][x + 1];
-	return (pt2);
-}
-
-static t_point	ft_pt3(t_fdf fdf, int x, int y)
-{
-	t_point	pt3;
-
-	pt3.x = x;
-	pt3.y = (y + 1);
-	pt3.z = fdf.map.map[y + 1][x];
-	return (pt3);
+	pt.x = x - fdf.map.width / 2;
+	pt.y = y - fdf.map.height / 2;
+	pt.z = z;
+	return (pt);
 }
 
 void	ft_draw(t_fdf *fdf)
 {
 	int		x;
 	int		y;
-	t_point	pt1;
+	t_2dpt	pt1;
 
 	x = -1;
 	while (++x < fdf->map.width)
@@ -77,11 +57,13 @@ void	ft_draw(t_fdf *fdf)
 		y = -1;
 		while (++y < fdf->map.height)
 		{
-			pt1 = ft_pt1(*fdf, x, y);
+			pt1 = pt2d_from_pt3d(fdf, ft_pt(*fdf, x, y, fdf->map.map[y][x]));
 			if (x != fdf->map.width - 1)
-				ft_draw_line(fdf, pt1, ft_pt2(*fdf, x, y));
+				ft_draw_line(fdf, pt1, pt2d_from_pt3d(fdf,
+						ft_pt(*fdf, x + 1, y, fdf->map.map[y][x + 1])));
 			if (y != fdf->map.height - 1)
-				ft_draw_line(fdf, pt1, ft_pt3(*fdf, x, y));
+				ft_draw_line(fdf, pt1, pt2d_from_pt3d(fdf,
+						ft_pt(*fdf, x, y + 1, fdf->map.map[y + 1][x])));
 		}
 	}
 }
