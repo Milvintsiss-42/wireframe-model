@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/27 23:18:04 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:02:06 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void		ft_display_parsed_map(t_map map);
 void		ft_display_map(t_fdf *fdf);
 void		ft_reframe(t_fdf *fdf);
 
-void		ft_draw(t_fdf *fdf, t_img *img);
+void		ft_draw(t_fdf *fdf);
 
 int			ft_on_keypressed(int key, t_fdf *fdf);
 void		ft_on_echap_keypressed(t_fdf *fdf);

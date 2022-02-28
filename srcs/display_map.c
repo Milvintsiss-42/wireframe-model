@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:55:02 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/27 23:09:51 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:55:13 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void	ft_reframe(t_fdf *fdf)
 {
-	t_img	*img;
-
 	ft_create_new_fdf_img(fdf);
-	img = &fdf->img.future;
-	ft_draw(fdf, img);
+	ft_draw(fdf);
 	ft_set_new_img_to_screen(fdf);
 }
 

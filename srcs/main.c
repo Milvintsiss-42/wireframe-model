@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:54:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/25 00:25:29 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:57:01 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static int	ft_open_map_file(char *file_path)
 
 int	main(int argc, char **argv)
 {
-	int		fd;
 	t_fdf	fdf;
 
 	ft_init_fdf_values(&fdf);

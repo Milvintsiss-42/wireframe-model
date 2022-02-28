@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:09:44 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/24 20:27:30 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:56:25 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_parse_map(t_fdf *fdf, int fd)
 			map->map = ft_realloc(map, map->height, 0);
 		if (!map->map)
 			ft_exit(*fdf, ft_perror_errno(ERRNO_INSUFFICIENT_MEM) + 1);
-		ft_parse_columns(map, line);
+		ft_parse_columns(fdf, line);
 		line = get_next_line(fd);
 	}
 	map->map = ft_realloc(map, map->height, 1);

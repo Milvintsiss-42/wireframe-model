@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 07:20:28 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/27 19:53:53 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:53:44 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_point	ft_pt3(t_fdf fdf, int x, int y)
 	return (pt3);
 }
 
-void	ft_draw(t_fdf *fdf, t_img *img)
+void	ft_draw(t_fdf *fdf)
 {
 	int		x;
 	int		y;
