@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/28 16:04:24 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/03/06 21:03:53 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@
 # define BLUE			0x0000FF
 
 # define KEY_ECHAP		0xff1b
+# define KEY_ROTATE_X	0x0078
+# define KEY_ROTATE_Y	0x0079
+# define KEY_ROTATE_Z	0x007a
+# define KEY_ZOOM		0x0070
 # define KEY_ARROW_L	0xff51
 # define KEY_ARROW_R	0xff53
 # define KEY_ARROW_T	0xff52
@@ -47,6 +51,11 @@
 # define KEY_MINUS		0x002d
 # define KEY_PLUS		0x003d
 # define KEY_ARROW_D	0xff54
+
+# define KEY_MODE_ZOOM			0
+# define KEY_MODE_ROTATION_X	1
+# define KEY_MODE_ROTATION_Y	2
+# define KEY_MODE_ROTATION_Z	3
 
 # ifndef KDEBUG
 #  define KDEBUG 0
@@ -105,6 +114,7 @@ typedef struct s_fdf {
 	t_mlx			mlx;
 	t_img_garbage	img;
 	t_draw			draw;
+	int				key_mode;
 }	t_fdf;
 
 int			ft_perror(char *error_str);
@@ -125,6 +135,7 @@ void		ft_reframe(t_fdf *fdf);
 void		ft_draw(t_fdf *fdf);
 
 int			ft_on_keypressed(int key, t_fdf *fdf);
+void		ft_on_keymode_keypressed(t_fdf *fdf, int key);
 void		ft_on_echap_keypressed(t_fdf *fdf);
 void		ft_on_arrowl_keypressed(t_fdf *fdf);
 void		ft_on_arrowr_keypressed(t_fdf *fdf);
