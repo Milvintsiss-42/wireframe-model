@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:31:31 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/28 15:23:19 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/03/16 22:11:41 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2)
 	diry = (p2.y - p1.y > 0) * 2 - 1;
 	dirx *= distx / max_dist;
 	diry *= disty / max_dist;
-	while (max_dist--)
+	while (max_dist-- >= 0)
 	{
 		ft_put_pixel_on_img(fdf, (int)p1.x, (int)p1.y, WHITE);
 		p1.x += dirx;
