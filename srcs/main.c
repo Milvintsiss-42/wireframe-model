@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:54:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/28 14:57:01 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:41:14 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	ft_init_fdf_values(t_fdf *fdf)
 	fdf->map.map = 0;
 	fdf->mlx.mlx = 0;
 	fdf->mlx.window = 0;
+	fdf->key_mode = KEY_MODE_ROTATE;
+	fdf->key_mode_axis = KEY_MODE_AXIS_Z;
 }
 
 static void	ft_verify_args(int argc, char **argv)

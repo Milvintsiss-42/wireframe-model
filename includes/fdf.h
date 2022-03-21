@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/06 21:03:53 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:50:49 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@
 # define BLUE			0x0000FF
 
 # define KEY_ECHAP		0xff1b
-# define KEY_ROTATE_X	0x0078
-# define KEY_ROTATE_Y	0x0079
-# define KEY_ROTATE_Z	0x007a
+# define KEY_X			0x0078
+# define KEY_Y			0x0079
+# define KEY_Z			0x007a
 # define KEY_ZOOM		0x0070
+# define KEY_ROTATE		0x0072
+# define KEY_TRANSLATE	0x0074
 # define KEY_ARROW_L	0xff51
 # define KEY_ARROW_R	0xff53
 # define KEY_ARROW_T	0xff52
@@ -52,10 +54,13 @@
 # define KEY_PLUS		0x003d
 # define KEY_ARROW_D	0xff54
 
-# define KEY_MODE_ZOOM			0
-# define KEY_MODE_ROTATION_X	1
-# define KEY_MODE_ROTATION_Y	2
-# define KEY_MODE_ROTATION_Z	3
+# define KEY_MODE_ZOOM		0
+# define KEY_MODE_ROTATE	1
+# define KEY_MODE_TRANSLATE	2
+
+# define KEY_MODE_AXIS_X	0
+# define KEY_MODE_AXIS_Y	1
+# define KEY_MODE_AXIS_Z	2
 
 # ifndef KDEBUG
 #  define KDEBUG 0
@@ -101,8 +106,11 @@ typedef struct s_mlx {
 
 typedef struct s_draw {
 	int		zm;
+	int		screentx;
+	int		screenty;
 	int		tx;
 	int		ty;
+	int		tz;
 	int		rx;
 	int		ry;
 	int		rz;
@@ -115,6 +123,7 @@ typedef struct s_fdf {
 	t_img_garbage	img;
 	t_draw			draw;
 	int				key_mode;
+	int				key_mode_axis;
 }	t_fdf;
 
 int			ft_perror(char *error_str);
@@ -128,6 +137,7 @@ void		ft_freeall(t_fdf fdf);
 void		ft_exit(t_fdf fdf, int status);
 
 void		ft_display_parsed_map(t_map map);
+void		ft_print_draw_debug_info(t_fdf *fdf);
 
 void		ft_display_map(t_fdf *fdf);
 void		ft_reframe(t_fdf *fdf);
@@ -136,6 +146,7 @@ void		ft_draw(t_fdf *fdf);
 
 int			ft_on_keypressed(int key, t_fdf *fdf);
 void		ft_on_keymode_keypressed(t_fdf *fdf, int key);
+void		ft_on_keymode_axis_keypressed(t_fdf *fdf, int key);
 void		ft_on_echap_keypressed(t_fdf *fdf);
 void		ft_on_arrowl_keypressed(t_fdf *fdf);
 void		ft_on_arrowr_keypressed(t_fdf *fdf);
@@ -152,6 +163,12 @@ void		ft_set_new_img_to_screen(t_fdf *fdf);
 
 void		ft_init_fdf_draw_helpers(t_fdf *fdf);
 void		ft_update_zoom(t_fdf *fdf, int zoom);
+
+int			get_rotation_of_current_axis(t_fdf *fdf);
+void		ft_update_rotation(t_fdf *fdf, int rotation);
+
+int			get_translation_of_current_axis(t_fdf *fdf);
+void		ft_update_translation(t_fdf *fdf, int translation);
 
 void		ft_put_pixel_on_img(t_fdf *fdf, int x, int y, int color);
 void		ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2);

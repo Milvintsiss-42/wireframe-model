@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:55:02 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/28 14:55:13 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:45:45 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_reframe(t_fdf *fdf)
 	ft_create_new_fdf_img(fdf);
 	ft_draw(fdf);
 	ft_set_new_img_to_screen(fdf);
+	if (KDEBUG)
+		ft_print_draw_debug_info(fdf);
 }
 
 static void	ft_init_mlx(t_fdf *fdf)
