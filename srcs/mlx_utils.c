@@ -6,13 +6,13 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:31:31 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/21 15:55:24 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/04/16 05:50:15 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_put_pixel_on_img(t_fdf *fdf, int x, int y, int color)
+static void	ft_put_pixel_on_img(t_fdf *fdf, int x, int y, int color)
 {
 	t_img	img;
 	char	*dest;
@@ -27,41 +27,42 @@ void	ft_put_pixel_on_img(t_fdf *fdf, int x, int y, int color)
 	}
 }
 
-double	ft_positive(double x)
+static double	ft_positive(double x)
 {
 	if (x < 0)
 		return (-x);
 	return (x);
 }
 
-void	ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2)
+static double	ft_dist(t_2dpt p1, t_2dpt p2)
+{
+	return (sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2)));
+}
+
+void	ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2, t_gradient gradient)
 {
 	double	max_dist;
 	double	dirx;
 	double	diry;
-	double	distx;
-	double	disty;
+	double	init_dist;
 
 	p1.x *= fdf->draw.zm;
 	p1.y *= fdf->draw.zm;
 	p2.x *= fdf->draw.zm;
 	p2.y *= fdf->draw.zm;
-	distx = ft_positive(p2.x - p1.x);
-	disty = ft_positive(p2.y - p1.y);
-	max_dist = ft_max((int)distx, (int)disty);
+	init_dist = ft_dist(p1, p2);
+	max_dist
+		= ft_max((int)ft_positive(p2.x - p1.x), (int)ft_positive(p2.y - p1.y));
 	dirx = (p2.x - p1.x > 0) * 2 - 1;
 	diry = (p2.y - p1.y > 0) * 2 - 1;
-	dirx *= distx / max_dist;
-	diry *= disty / max_dist;
+	dirx *= ft_positive(p2.x - p1.x) / max_dist;
+	diry *= ft_positive(p2.y - p1.y) / max_dist;
 	while (max_dist-- >= 0)
 	{
-		ft_put_pixel_on_img(fdf, (int)p1.x, (int)p1.y, WHITE);
+		ft_put_pixel_on_img(fdf, (int)p1.x, (int)p1.y,
+			ft_color_mix(gradient.color1, gradient.color2,
+				1 - ft_dist(p1, p2) / init_dist));
 		p1.x += dirx;
 		p1.y += diry;
 	}
-}
-
-double	ft_dist(t_2dpt p1, t_2dpt p2)
-{
-	return (sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2)));
 }

@@ -6,21 +6,11 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:09:44 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/28 14:56:25 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/04/12 21:40:51 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static void	ft_freesplit(char **split)
-{
-	char	**to_free;
-
-	to_free = split;
-	while (*split)
-		free(*split++);
-	free(to_free);
-}
 
 static int	ft_get_width(char **columns)
 {
@@ -55,6 +45,14 @@ static int	**ft_realloc(t_map *map, int height, int exactHeight)
 	return (new_map);
 }
 
+static void	ft_set_max_min_depth(t_fdf *fdf, int depth)
+{
+	if (depth > fdf->map.depth_max)
+		fdf->map.depth_max = depth;
+	if (depth < fdf->map.depth_min)
+		fdf->map.depth_min = depth;
+}
+
 static void	ft_parse_columns(t_fdf *fdf, char *line)
 {
 	t_map	*map;
@@ -76,7 +74,10 @@ static void	ft_parse_columns(t_fdf *fdf, char *line)
 	}
 	i = -1;
 	while (++i < map->width)
+	{
 		map->map[map->height - 1][i] = ft_atoi(columns[i]);
+		ft_set_max_min_depth(fdf, map->map[map->height - 1][i]);
+	}
 	ft_freesplit(columns);
 }
 

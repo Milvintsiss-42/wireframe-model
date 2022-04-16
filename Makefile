@@ -6,18 +6,20 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/02 02:43:30 by ple-stra          #+#    #+#              #
-#    Updated: 2022/03/21 16:39:08 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/04/16 06:00:35 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fdf
 
 SRCS_DIR	= srcs
-SRCS		= main.c parse_map.c errors.c debug.c free.c display_map.c\
+SRCS		= main.c errors.c debug.c free.c\
+ parse_map.c display_map.c\
  keys_events.c keys_events_arrows.c keys_events_plus_minus.c\
  key_modes.c key_modes_axis.c\
- mlx_utils.c img_garbage.c draw.c draw_utils.c rotation.c translation.c\
- 3d_world.c
+ img_garbage.c rotation.c translation.c\
+ 3d_world.c\
+ mlx_utils.c draw.c draw_utils.c gradients.c
 BUILD_DIR	= build
 OBJ_DIR		= $(BUILD_DIR)/objs
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

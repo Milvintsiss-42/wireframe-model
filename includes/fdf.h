@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/21 19:50:49 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/04/16 05:50:28 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define GREEN			0x00FF00
 # define BLUE			0x0000FF
 
+# define LOW_COLOR		BLUE
+# define HIGH_COLOR		RED
+
 # define KEY_ECHAP		0xff1b
 # define KEY_X			0x0078
 # define KEY_Y			0x0079
@@ -62,6 +65,8 @@
 # define KEY_MODE_AXIS_Y	1
 # define KEY_MODE_AXIS_Z	2
 
+# define PI	3.142857
+
 # ifndef KDEBUG
 #  define KDEBUG 0
 # endif
@@ -78,9 +83,16 @@ typedef struct s_3dpoint {
 	double	z;
 }	t_3dpt;
 
+typedef struct s_gradient {
+	int	color1;
+	int	color2;
+}	t_gradient;
+
 typedef struct s_map {
 	int	height;
 	int	width;
+	int	depth_max;
+	int	depth_min;
 	int	**map;
 }	t_map;
 
@@ -131,6 +143,8 @@ int			ft_perror_errno(char *error_str);
 
 void		ft_parse_map(t_fdf *fdf, int fd);
 
+void		ft_freesplit(char **split);
+
 void		ft_destroy_img(t_mlx mlx, t_img img);
 void		ft_freemap(t_map map);
 void		ft_freeall(t_fdf fdf);
@@ -143,6 +157,9 @@ void		ft_display_map(t_fdf *fdf);
 void		ft_reframe(t_fdf *fdf);
 
 void		ft_draw(t_fdf *fdf);
+
+t_gradient	ft_get_gradient(t_fdf *fdf, t_3dpt pt1, t_3dpt pt2);
+int			ft_color_mix(int color1, int color2, double mix);	
 
 int			ft_on_keypressed(int key, t_fdf *fdf);
 void		ft_on_keymode_keypressed(t_fdf *fdf, int key);
@@ -170,8 +187,7 @@ void		ft_update_rotation(t_fdf *fdf, int rotation);
 int			get_translation_of_current_axis(t_fdf *fdf);
 void		ft_update_translation(t_fdf *fdf, int translation);
 
-void		ft_put_pixel_on_img(t_fdf *fdf, int x, int y, int color);
-void		ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2);
+void		ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2, t_gradient gradient);
 
 t_2dpt		pt2d_from_pt3d(t_fdf *fdf, t_3dpt pt3d);
 
