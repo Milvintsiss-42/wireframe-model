@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 22:48:10 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/16 04:19:47 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/04/16 07:08:00 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,19 @@ t_gradient	ft_get_gradient(t_fdf *fdf, t_3dpt pt1, t_3dpt pt2)
 	z1 = pt1.z;
 	z2 = pt2.z;
 	depth_diff = fdf->map.depth_max - fdf->map.depth_min;
-	gradient.color1
-		= ft_color_mix(LOW_COLOR, HIGH_COLOR,
-			(z1 - fdf->map.depth_min) / depth_diff);
-	gradient.color2
-		= ft_color_mix(LOW_COLOR, HIGH_COLOR,
-			(z2 - fdf->map.depth_min) / depth_diff);
+	if (depth_diff != 0)
+	{
+		gradient.color1
+			= ft_color_mix(LOW_COLOR, HIGH_COLOR,
+				(z1 - fdf->map.depth_min) / depth_diff);
+		gradient.color2
+			= ft_color_mix(LOW_COLOR, HIGH_COLOR,
+				(z2 - fdf->map.depth_min) / depth_diff);
+	}
+	else
+	{
+		gradient.color1 = LOW_COLOR;
+		gradient.color2 = LOW_COLOR;
+	}
 	return (gradient);
 }
