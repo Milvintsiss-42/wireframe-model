@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:31:31 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/16 05:50:15 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/04/16 06:35:53 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ void	ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2, t_gradient gradient)
 	double	diry;
 	double	init_dist;
 
-	p1.x *= fdf->draw.zm;
-	p1.y *= fdf->draw.zm;
-	p2.x *= fdf->draw.zm;
-	p2.y *= fdf->draw.zm;
 	init_dist = ft_dist(p1, p2);
 	max_dist
 		= ft_max((int)ft_positive(p2.x - p1.x), (int)ft_positive(p2.y - p1.y));
