@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 02:15:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/21 16:36:17 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/04/16 03:32:44 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	ft_on_keypressed(int key, t_fdf *fdf)
 		ft_on_keymode_keypressed(fdf, key);
 	else if (key == KEY_X || key == KEY_Y || key == KEY_Z)
 		ft_on_keymode_axis_keypressed(fdf, key);
-	ft_reframe(fdf);
+	if (key == KEY_ARROW_L || key == KEY_ARROW_R || key == KEY_ARROW_T
+		|| key == KEY_ARROW_D || key == KEY_PLUS || key == KEY_MINUS)
+		ft_reframe(fdf);
 	return (0);
 }
 
