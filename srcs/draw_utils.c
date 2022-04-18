@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 22:33:48 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/21 19:54:35 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/04/18 05:06:56 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ft_init_fdf_draw_helpers(t_fdf *fdf)
 			fdf->mlx.win_height / (fdf->map.height - 1)) * 2 / 3;
 	draw->screentx = fdf->mlx.win_width / 2;
 	draw->screenty = fdf->mlx.win_height / 2;
-	draw->rx = 45;
-	draw->ry = 45;
-	draw->rz = 45;
+	draw->rx = 90;
+	draw->ry = 90;
+	draw->rz = 90;
 	draw->tx = 0;
 	draw->ty = 0;
 	draw->tz = 0;
