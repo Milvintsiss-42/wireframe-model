@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:31:31 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/16 06:35:53 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/06 05:58:04 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void	ft_draw_line(t_fdf *fdf, t_2dpt p1, t_2dpt p2, t_gradient gradient)
 		= ft_max((int)ft_positive(p2.x - p1.x), (int)ft_positive(p2.y - p1.y));
 	dirx = (p2.x - p1.x > 0) * 2 - 1;
 	diry = (p2.y - p1.y > 0) * 2 - 1;
-	dirx *= ft_positive(p2.x - p1.x) / max_dist;
-	diry *= ft_positive(p2.y - p1.y) / max_dist;
+	dirx *= (ft_positive(p2.x - p1.x) / max_dist) / 1.1;
+	diry *= (ft_positive(p2.y - p1.y) / max_dist) / 1.1;
+	max_dist *= 1.1;
 	while (max_dist-- >= 0)
 	{
 		ft_put_pixel_on_img(fdf, (int)p1.x, (int)p1.y,
