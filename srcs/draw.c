@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 07:20:28 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/16 06:39:27 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/06 01:51:22 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,20 @@
 // 	return (img);
 // }
 
-static t_3dpt	ft_pt(t_fdf fdf, int x, int y, int z)
+static t_3dpt	ft_pt(t_fdf fdf, int x, int y, t_map_elem map_elem)
 {
 	t_3dpt	pt;
 
 	pt.x = x - fdf.map.width / 2;
 	pt.y = y - fdf.map.height / 2;
-	pt.z = z;
+	pt.z = map_elem.height;
+	if (map_elem.has_color)
+	{
+		pt.color = map_elem.color;
+		pt.has_color = 1;
+	}
+	else
+		pt.has_color = 0;
 	return (pt);
 }
 

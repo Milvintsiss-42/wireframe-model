@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:09:44 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/12 21:40:51 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:52:50 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static int	ft_get_width(char **columns)
 	return (columns - columns2);
 }
 
-static int	**ft_realloc(t_map *map, int height, int exactHeight)
+static t_map_elem	**ft_realloc(t_map *map, int height, int exactHeight)
 {
-	int	**new_map;
+	t_map_elem	**new_map;
 
 	if (exactHeight)
-		new_map = malloc(sizeof(int *) * height);
+		new_map = malloc(sizeof(t_map_elem *) * height);
 	else
-		new_map = malloc(sizeof(int *) * (height + 10));
+		new_map = malloc(sizeof(t_map_elem *) * (height + 10));
 	if (!new_map)
 	{
 		ft_freemap(*map);
@@ -65,7 +65,7 @@ static void	ft_parse_columns(t_fdf *fdf, char *line)
 	if (!columns)
 		ft_exit(*fdf, ft_perror_errno(ERRNO_INSUFFICIENT_MEM) + 1);
 	map->width = ft_get_width(columns);
-	map->map[map->height - 1] = malloc(sizeof(int) * map->width);
+	map->map[map->height - 1] = malloc(sizeof(t_map_elem) * map->width);
 	if (!(map->map[map->height - 1]))
 	{
 		free(line);
@@ -75,8 +75,8 @@ static void	ft_parse_columns(t_fdf *fdf, char *line)
 	i = -1;
 	while (++i < map->width)
 	{
-		map->map[map->height - 1][i] = ft_atoi(columns[i]);
-		ft_set_max_min_depth(fdf, map->map[map->height - 1][i]);
+		map->map[map->height - 1][i] = ft_parse_point(columns[i]);
+		ft_set_max_min_depth(fdf, map->map[map->height - 1][i].height);
 	}
 	ft_freesplit(columns);
 }

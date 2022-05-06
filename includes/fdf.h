@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/16 05:50:28 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/06 05:25:49 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define GREEN			0x00FF00
 # define BLUE			0x0000FF
 
-# define LOW_COLOR		BLUE
+# define LOW_COLOR		GREEN
 # define HIGH_COLOR		RED
 
 # define KEY_ECHAP		0xff1b
@@ -71,6 +71,10 @@
 #  define KDEBUG 0
 # endif
 
+# ifndef USE_EXTERNAL_COLORS
+#  define USE_EXTERNAL_COLORS 1
+# endif
+
 typedef struct s_2dpoint {
 	double	x;
 	double	y;
@@ -81,6 +85,8 @@ typedef struct s_3dpoint {
 	double	x;
 	double	y;
 	double	z;
+	int		color;
+	int		has_color;
 }	t_3dpt;
 
 typedef struct s_gradient {
@@ -88,12 +94,18 @@ typedef struct s_gradient {
 	int	color2;
 }	t_gradient;
 
-typedef struct s_map {
+typedef struct s_map_elem {
 	int	height;
-	int	width;
-	int	depth_max;
-	int	depth_min;
-	int	**map;
+	int	color;
+	int	has_color;
+}	t_map_elem;
+
+typedef struct s_map {
+	int			height;
+	int			width;
+	int			depth_max;
+	int			depth_min;
+	t_map_elem	**map;
 }	t_map;
 
 typedef struct s_img {
@@ -142,6 +154,7 @@ int			ft_perror(char *error_str);
 int			ft_perror_errno(char *error_str);
 
 void		ft_parse_map(t_fdf *fdf, int fd);
+t_map_elem	ft_parse_point(char *point);
 
 void		ft_freesplit(char **split);
 

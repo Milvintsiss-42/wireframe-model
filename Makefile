@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/02 02:43:30 by ple-stra          #+#    #+#              #
-#    Updated: 2022/04/16 06:00:35 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/05/06 05:25:08 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME		= fdf
 
 SRCS_DIR	= srcs
 SRCS		= main.c errors.c debug.c free.c\
- parse_map.c display_map.c\
- keys_events.c keys_events_arrows.c keys_events_plus_minus.c\
+ parse_map.c parse_map2.c display_map.c\
+ keys_events.c keys_events_arrows.c keys_events_plus_minus.c mouse_events.c\
  key_modes.c key_modes_axis.c\
  img_garbage.c rotation.c translation.c\
  3d_world.c\
@@ -50,6 +50,9 @@ ifeq (sanitize, $(filter sanitize,$(MAKECMDGOALS)))
 endif
 ifeq (debug, $(filter debug,$(MAKECMDGOALS)))
 	CFLAGS	+= -D KDEBUG=1
+endif
+ifeq (no_external_colors, $(filter no_external_colors,$(MAKECMDGOALS)))
+	CFLAGS	+= -D USE_EXTERNAL_COLORS=0
 endif
 
 GIT_SUBM	= $(shell \
@@ -112,4 +115,6 @@ sanitize:
 			@echo "WARN: fsanitize is enabled"
 debug:
 			@echo "WARN: debug is enabled"
-.PHONY: all clean fclean fcleanall re reall rmlibft rmmlx nWerror sanitize debug
+no_external_colors:
+			@echo "WARN: external colors are disabled"
+.PHONY: all clean fclean fcleanall re reall rmlibft rmmlx nWerror sanitize debug no_external_colors
