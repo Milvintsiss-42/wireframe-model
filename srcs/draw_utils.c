@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 22:33:48 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/26 04:00:08 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/06 05:16:45 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_init_fdf_draw_helpers(t_fdf *fdf)
 		= ft_min(fdf->mlx.win_height, fdf->mlx.win_width) / FSCREEN_DIVIDOR;
 	draw->zm = ft_min(fdf->mlx.win_width / (fdf->map.width - 1),
 			fdf->mlx.win_height / (fdf->map.height - 1)) * 2 / 3;
+	if (draw->zm < 1)
+		draw->zm = ZINCREMENT;
 	draw->screentx = fdf->mlx.win_width / 2;
 	draw->screenty = fdf->mlx.win_height / 2;
 	draw->rx = 270;
