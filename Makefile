@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/02 02:43:30 by ple-stra          #+#    #+#              #
-#    Updated: 2022/05/06 05:25:08 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/05/06 05:26:15 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,8 +107,6 @@ fcleanall	: rmlibft rmmlx
 
 re			: fclean all
 
-reall		: fcleanall all
-
 nWerror: 
 			@echo "WARN: Werror is disabled"
 sanitize:
@@ -117,4 +115,4 @@ debug:
 			@echo "WARN: debug is enabled"
 no_external_colors:
 			@echo "WARN: external colors are disabled"
-.PHONY: all clean fclean fcleanall re reall rmlibft rmmlx nWerror sanitize debug no_external_colors
+.PHONY: all clean fclean fcleanall re rmlibft rmmlx nWerror sanitize debug no_external_colors
