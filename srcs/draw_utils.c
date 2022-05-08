@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 22:33:48 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/06 05:16:45 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/08 17:41:01 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	ft_init_fdf_draw_helpers(t_fdf *fdf)
 		draw->zm = ZINCREMENT;
 	draw->screentx = fdf->mlx.win_width / 2;
 	draw->screenty = fdf->mlx.win_height / 2;
-	draw->rx = 270;
-	draw->ry = 270;
-	draw->rz = 270;
+	draw->rx = 0;
+	draw->ry = 0;
+	draw->rz = 0;
 	draw->tx = 0;
 	draw->ty = 0;
 	draw->tz = 0;
