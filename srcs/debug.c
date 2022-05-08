@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:42:21 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/21 19:55:04 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/08 18:13:42 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_print_draw_debug_info(t_fdf *fdf)
 	if (!KDEBUG)
 		return ;
 	ft_printf("\n------REDRAW------\n\n");
+	ft_printf("zoom: %3d\n\n", fdf->draw.zm);
 	ft_printf("tx: %3d\n", fdf->draw.tx);
 	ft_printf("ty: %3d\n", fdf->draw.ty);
 	ft_printf("tz: %3d\n\n", fdf->draw.tz);
