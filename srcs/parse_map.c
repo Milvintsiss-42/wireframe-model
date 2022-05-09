@@ -6,20 +6,24 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:09:44 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/04 14:52:50 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:06:45 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	ft_get_width(char **columns)
+static void	ft_set_map_width(t_map *map, char **columns)
 {
 	char	**columns2;
+	int		last_width;
 
 	columns2 = columns;
 	while (*columns)
 		columns++;
-	return (columns - columns2);
+	last_width = map->width;
+	map->width = columns - columns2;
+	if (map->width > last_width)
+		map->width = last_width;
 }
 
 static t_map_elem	**ft_realloc(t_map *map, int height, int exactHeight)
@@ -64,7 +68,7 @@ static void	ft_parse_columns(t_fdf *fdf, char *line)
 	free(line);
 	if (!columns)
 		ft_exit(*fdf, ft_perror_errno(ERRNO_INSUFFICIENT_MEM) + 1);
-	map->width = ft_get_width(columns);
+	ft_set_map_width(map, columns);
 	map->map[map->height - 1] = malloc(sizeof(t_map_elem) * map->width);
 	if (!(map->map[map->height - 1]))
 	{
@@ -89,6 +93,7 @@ void	ft_parse_map(t_fdf *fdf, int fd)
 	map = &fdf->map;
 	map->map = 0;
 	map->height = 0;
+	map->width = 2147483647;
 	line = get_next_line(fd);
 	while (line && *line)
 	{
