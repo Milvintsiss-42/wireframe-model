@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:17:13 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/09 17:03:06 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:45:31 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_2dpt	perspective_projection(t_fdf *fdf, t_3dpt pt3d)
 	t_2dpt	pt2d;
 	double	f;
 
-	f = fdf->map.width;
+	f = fdf->map.width / 2;
 	if (fdf->map.depth_max != 0 || fdf->map.depth_min != 0)
 		pt3d.z = (fdf->map.depth_max + fdf->map.depth_min) - pt3d.z;
 	else
