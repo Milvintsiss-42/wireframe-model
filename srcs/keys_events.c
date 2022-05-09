@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 02:15:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/09 17:38:51 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:39:08 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void	ft_on_echap_keypressed(t_fdf *fdf)
 	if (KDEBUG)
 		ft_putstr("ECHAP key pressed \n");
 	ft_exit(*fdf, 0);
+}
+
+int	ft_on_cross_clicked(t_fdf *fdf)
+{
+	if (KDEBUG)
+		ft_putstr("Exit cross pressed \n");
+	ft_exit(*fdf, 0);
+	return (0);
 }

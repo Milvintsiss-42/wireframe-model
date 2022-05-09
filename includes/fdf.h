@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/09 17:35:00 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:37:52 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ int			ft_on_keypressed(int key, t_fdf *fdf);
 void		ft_on_keymode_keypressed(t_fdf *fdf, int key);
 void		ft_on_keymode_axis_keypressed(t_fdf *fdf, int key);
 void		ft_on_echap_keypressed(t_fdf *fdf);
+int			ft_on_cross_clicked(t_fdf *fdf);
 void		ft_on_arrowl_keypressed(t_fdf *fdf);
 void		ft_on_arrowr_keypressed(t_fdf *fdf);
 void		ft_on_arrowt_keypressed(t_fdf *fdf);

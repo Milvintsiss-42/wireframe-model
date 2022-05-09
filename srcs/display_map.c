@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:55:02 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/21 19:45:45 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/09 16:43:51 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	ft_display_map(t_fdf *fdf)
 	mlx = &fdf->mlx;
 	ft_reframe(fdf);
 	mlx_key_hook(mlx->window, ft_on_keypressed, fdf);
+	mlx_hook(mlx->window, 17, 0, ft_on_cross_clicked, fdf);
 	mlx_loop(mlx->mlx);
 }
