@@ -6,11 +6,19 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:21:41 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/21 16:39:37 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/08 18:39:54 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+t_3dpt	apply_translations(t_fdf *fdf, t_3dpt pt3d)
+{
+	pt3d.x += fdf->draw.tx;
+	pt3d.y += fdf->draw.ty;
+	pt3d.z += fdf->draw.tz;
+	return (pt3d);
+}
 
 int	get_translation_of_current_axis(t_fdf *fdf)
 {

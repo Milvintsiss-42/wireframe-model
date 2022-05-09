@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 02:15:59 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/16 03:32:44 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:38:51 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,15 @@ int	ft_on_keypressed(int key, t_fdf *fdf)
 		ft_on_arrowt_keypressed(fdf);
 	else if (key == KEY_ARROW_D)
 		ft_on_arrowd_keypressed(fdf);
-	else if (key == KEY_PLUS)
-		ft_on_plus_keypressed(fdf);
-	else if (key == KEY_MINUS)
-		ft_on_minus_keypressed(fdf);
-	else if (key == KEY_ZOOM || key == KEY_TRANSLATE || key == KEY_ROTATE)
+	else if (key == KEY_PLUS || key == KEY_MINUS)
+		ft_on_plus_or_minus_keypressed(fdf, key);
+	else if (key == KEY_ZOOM || key == KEY_TRANSLATE || key == KEY_ROTATE
+		|| key == KEY_HEIGHT)
 		ft_on_keymode_keypressed(fdf, key);
 	else if (key == KEY_X || key == KEY_Y || key == KEY_Z)
 		ft_on_keymode_axis_keypressed(fdf, key);
-	if (key == KEY_ARROW_L || key == KEY_ARROW_R || key == KEY_ARROW_T
-		|| key == KEY_ARROW_D || key == KEY_PLUS || key == KEY_MINUS)
-		ft_reframe(fdf);
+	else if (key == KEY_ISOMETRIC || key == KEY_PERSPECT || key == KEY_FLAT_ISO)
+		ft_on_projection_mode_keypressed(fdf, key);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 21:03:30 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/03/21 16:42:50 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/08 19:57:07 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ static void	ft_on_translate_mode_keypressed(t_fdf *fdf)
 	fdf->key_mode = KEY_MODE_TRANSLATE;
 }
 
+static void	ft_on_height_mode_keypressed(t_fdf *fdf)
+{
+	if (KDEBUG)
+		ft_putstr("HEIGHT MODE key pressed \n");
+	fdf->key_mode = KEY_MODE_HEIGHT;
+}
+
 void	ft_on_keymode_keypressed(t_fdf *fdf, int key)
 {
 	if (key == KEY_ZOOM)
@@ -41,4 +48,6 @@ void	ft_on_keymode_keypressed(t_fdf *fdf, int key)
 		ft_on_rotate_mode_keypressed(fdf);
 	else if (key == KEY_TRANSLATE)
 		ft_on_translate_mode_keypressed(fdf);
+	else if (key == KEY_HEIGHT)
+		ft_on_height_mode_keypressed(fdf);
 }

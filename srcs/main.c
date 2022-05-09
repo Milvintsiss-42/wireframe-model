@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:54:20 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/04/12 21:07:45 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/08 18:37:02 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_init_fdf_values(t_fdf *fdf)
 	fdf->mlx.window = 0;
 	fdf->key_mode = KEY_MODE_ROTATE;
 	fdf->key_mode_axis = KEY_MODE_AXIS_Z;
+	fdf->projection_mode = ISOMETRIC_PROJECTION;
 }
 
 static void	ft_verify_args(int argc, char **argv)

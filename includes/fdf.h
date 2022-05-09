@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/06 05:25:49 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:35:00 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 
 # define PROGRAM_NAME "fdf"
 
-# define FSCREEN_DIVIDOR	50
-# define ZINCREMENT			2
+# define FSCREEN_DIVIDOR		50
+# define ZINCREMENT				2
+# define DEFAULT_HEIGHT_FACTOR	24
+# define HEIGHT_INCREMENT		3
 
 # define ERR_WRG_NB_ARG			"Error: Incorrect number of arguments\n"
 # define ERR_INV_EXT			"Error: Invalid file extension\n"
@@ -39,7 +41,7 @@
 # define GREEN			0x00FF00
 # define BLUE			0x0000FF
 
-# define LOW_COLOR		GREEN
+# define LOW_COLOR		BLUE
 # define HIGH_COLOR		RED
 
 # define KEY_ECHAP		0xff1b
@@ -49,6 +51,10 @@
 # define KEY_ZOOM		0x0070
 # define KEY_ROTATE		0x0072
 # define KEY_TRANSLATE	0x0074
+# define KEY_HEIGHT		0x0068
+# define KEY_ISOMETRIC	0x0031
+# define KEY_FLAT_ISO	0x0032
+# define KEY_PERSPECT	0x0033
 # define KEY_ARROW_L	0xff51
 # define KEY_ARROW_R	0xff53
 # define KEY_ARROW_T	0xff52
@@ -57,9 +63,14 @@
 # define KEY_PLUS		0x003d
 # define KEY_ARROW_D	0xff54
 
+# define ISOMETRIC_PROJECTION	0
+# define FLAT_ISO_PROJECTION	1
+# define PERSPECTIVE_PROJECTION	2
+
 # define KEY_MODE_ZOOM		0
 # define KEY_MODE_ROTATE	1
 # define KEY_MODE_TRANSLATE	2
+# define KEY_MODE_HEIGHT	3
 
 # define KEY_MODE_AXIS_X	0
 # define KEY_MODE_AXIS_Y	1
@@ -138,6 +149,7 @@ typedef struct s_draw {
 	int		rx;
 	int		ry;
 	int		rz;
+	int		fheight;
 	int		fscreen;
 }	t_draw;
 
@@ -148,6 +160,7 @@ typedef struct s_fdf {
 	t_draw			draw;
 	int				key_mode;
 	int				key_mode_axis;
+	int				projection_mode;
 }	t_fdf;
 
 int			ft_perror(char *error_str);
@@ -182,9 +195,8 @@ void		ft_on_arrowl_keypressed(t_fdf *fdf);
 void		ft_on_arrowr_keypressed(t_fdf *fdf);
 void		ft_on_arrowt_keypressed(t_fdf *fdf);
 void		ft_on_arrowd_keypressed(t_fdf *fdf);
-void		ft_on_plus_keypressed(t_fdf *fdf);
-void		ft_on_minus_keypressed(t_fdf *fdf);
-
+void		ft_on_plus_or_minus_keypressed(t_fdf *fdf, int key);
+void		ft_on_projection_mode_keypressed(t_fdf *fdf, int key);
 t_img		ft_create_empty_img(t_fdf fdf);
 t_img		ft_get_null_img(void);
 void		ft_create_new_fdf_img(t_fdf *fdf);
@@ -194,9 +206,11 @@ void		ft_set_new_img_to_screen(t_fdf *fdf);
 void		ft_init_fdf_draw_helpers(t_fdf *fdf);
 void		ft_update_zoom(t_fdf *fdf, int zoom);
 
+t_3dpt		apply_rotations(t_fdf *fdf, t_3dpt pt3d);
 int			get_rotation_of_current_axis(t_fdf *fdf);
 void		ft_update_rotation(t_fdf *fdf, int rotation);
 
+t_3dpt		apply_translations(t_fdf *fdf, t_3dpt pt3d);
 int			get_translation_of_current_axis(t_fdf *fdf);
 void		ft_update_translation(t_fdf *fdf, int translation);
 

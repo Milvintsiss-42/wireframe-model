@@ -6,7 +6,7 @@
 #    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/02 02:43:30 by ple-stra          #+#    #+#              #
-#    Updated: 2022/05/06 05:26:15 by ple-stra         ###   ########.fr        #
+#    Updated: 2022/05/08 18:34:12 by ple-stra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME		= fdf
 SRCS_DIR	= srcs
 SRCS		= main.c errors.c debug.c free.c\
  parse_map.c parse_map2.c display_map.c\
- keys_events.c keys_events_arrows.c keys_events_plus_minus.c mouse_events.c\
- key_modes.c key_modes_axis.c\
+ keys_events.c keys_events_arrows.c keys_events_plus_minus.c\
+ key_modes.c key_modes_axis.c keys_projection_modes.c\
  img_garbage.c rotation.c translation.c\
  3d_world.c\
  mlx_utils.c draw.c draw_utils.c gradients.c

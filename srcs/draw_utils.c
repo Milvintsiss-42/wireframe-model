@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 22:33:48 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/08 17:41:01 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/08 20:02:39 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_init_fdf_draw_helpers(t_fdf *fdf)
 	draw->tx = 0;
 	draw->ty = 0;
 	draw->tz = 0;
+	draw->fheight = DEFAULT_HEIGHT_FACTOR;
 }
 
 void	ft_update_zoom(t_fdf *fdf, int zoom)

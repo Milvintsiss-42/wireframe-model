@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:42:21 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/08 18:13:42 by ple-stra         ###   ########.fr       */
+/*   Updated: 2022/05/08 19:54:58 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ void	ft_print_draw_debug_info(t_fdf *fdf)
 	if (!KDEBUG)
 		return ;
 	ft_printf("\n------REDRAW------\n\n");
+	if (fdf->projection_mode == ISOMETRIC_PROJECTION)
+		ft_printf("Projection: ISOMETRIC\n\n");
+	else if (fdf->projection_mode == FLAT_ISO_PROJECTION)
+		ft_printf("Projection: FLAT_ISOMETRIC\n\n");
+	else if (fdf->projection_mode == PERSPECTIVE_PROJECTION)
+		ft_printf("Projection: PERSPECTIVE\n\n");
 	ft_printf("zoom: %3d\n\n", fdf->draw.zm);
 	ft_printf("tx: %3d\n", fdf->draw.tx);
 	ft_printf("ty: %3d\n", fdf->draw.ty);
