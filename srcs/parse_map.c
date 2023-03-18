@@ -6,7 +6,7 @@
 /*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 02:09:44 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/09 16:06:45 by ple-stra         ###   ########.fr       */
+/*   Updated: 2023/03/18 21:22:34 by ple-stra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_set_map_width(t_map *map, char **columns)
 		map->width = last_width;
 }
 
-static t_map_elem	**ft_realloc(t_map *map, int height, int exactHeight)
+static t_map_elem	**ft_map_realloc(t_map *map, int height, int exactHeight)
 {
 	t_map_elem	**new_map;
 
@@ -99,13 +99,13 @@ void	ft_parse_map(t_fdf *fdf, int fd)
 	{
 		map->height++;
 		if (!map->map || map->height % 10 == 0)
-			map->map = ft_realloc(map, map->height, 0);
+			map->map = ft_map_realloc(map, map->height, 0);
 		if (!map->map)
 			ft_exit(*fdf, ft_perror_errno(ERRNO_INSUFFICIENT_MEM) + 1);
 		ft_parse_columns(fdf, line);
 		line = get_next_line(fd);
 	}
-	map->map = ft_realloc(map, map->height, 1);
+	map->map = ft_map_realloc(map, map->height, 1);
 	if (!map->map)
 		ft_exit(*fdf, ft_perror_errno(ERRNO_INSUFFICIENT_MEM) + 1);
 	if (map->height <= 0 || map->width <= 0)
