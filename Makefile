@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+         #
+#    By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/02 02:43:30 by ple-stra          #+#    #+#              #
-#    Updated: 2022/05/09 17:42:11 by ple-stra         ###   ########.fr        #
+#    Updated: 2023/06/17 12:28:45 by ladloff          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fdf
 
 SRCS_DIR	= srcs
-SRCS		= main.c errors.c debug.c free.c\
+SRCS		= main.c errors.c debug.c free.c freemlx.c \
  parse_map.c parse_map2.c display_map.c\
  keys_events.c keys_events_arrows.c keys_events_plus_minus.c\
  key_modes.c key_modes_axis.c keys_projection_modes.c\
@@ -34,9 +34,9 @@ MLX_DIR		= minilibx-linux
 MLX_LIB		= $(MLX_DIR)/libmlx_Linux.a
 MLXFLAGS	= -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
 else
-MLX_DIR		= mlx
+MLX_DIR		= minilibx-opengl
 MLX_LIB		= $(MLX_DIR)/libmlx.a
-MLXFLAGS	= -framework OpenGL -framework AppKit
+MLXFLAGS	= -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -lm
 endif
 
 CC			= cc
@@ -93,7 +93,7 @@ rmmlx		:
 
 $(NAME)		: $(GIT_SUBM) $(LIBFT) $(MLX_LIB) $(OBJ)
 			$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LFLAGS)
-			
+
 clean		:
 			$(RM) $(OBJ_DIR)
 
@@ -107,7 +107,7 @@ fcleanall	: rmlibft rmmlx
 
 re			: fclean all
 
-nWerror: 
+nWerror:
 			@echo "WARN: Werror is disabled"
 sanitize:
 			@echo "WARN: fsanitize is enabled"

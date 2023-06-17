@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 09:54:10 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/02/25 00:27:12 by ple-stra         ###   ########.fr       */
+/*   Updated: 2023/06/17 12:27:25 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,6 @@ void	ft_freemap(t_map map)
 	while (++i < map.height)
 		free(map.map[i]);
 	free(map.map);
-}
-
-static void	ft_freemlx(t_mlx mlx)
-{
-	if (mlx.mlx)
-	{
-		if (mlx.window)
-			mlx_destroy_window(mlx.mlx, mlx.window);
-		mlx_destroy_display(mlx.mlx);
-		free(mlx.mlx);
-	}
 }
 
 void	ft_freeall(t_fdf fdf)

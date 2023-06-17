@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 01:38:38 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/09 17:37:52 by ple-stra         ###   ########.fr       */
+/*   Updated: 2023/06/17 12:30:57 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,45 @@
 # define LOW_COLOR		BLUE
 # define HIGH_COLOR		RED
 
-# define KEY_ECHAP		0xff1b
-# define KEY_X			0x0078
-# define KEY_Y			0x0079
-# define KEY_Z			0x007a
-# define KEY_ZOOM		0x0070
-# define KEY_ROTATE		0x0072
-# define KEY_TRANSLATE	0x0074
-# define KEY_HEIGHT		0x0068
-# define KEY_ISOMETRIC	0x0031
-# define KEY_FLAT_ISO	0x0032
-# define KEY_PERSPECT	0x0033
-# define KEY_ARROW_L	0xff51
-# define KEY_ARROW_R	0xff53
-# define KEY_ARROW_T	0xff52
-# define KEY_ARROW_D	0xff54
-# define KEY_MINUS		0x002d
-# define KEY_PLUS		0x003d
-# define KEY_ARROW_D	0xff54
+# ifdef __linux__
+#  define KEY_ECHAP		0xff1b
+#  define KEY_X			0x0078
+#  define KEY_Y			0x0079
+#  define KEY_Z			0x007a
+#  define KEY_ZOOM		0x0070
+#  define KEY_ROTATE	0x0072
+#  define KEY_TRANSLATE	0x0074
+#  define KEY_HEIGHT	0x0068
+#  define KEY_ISOMETRIC	0x0031
+#  define KEY_FLAT_ISO	0x0032
+#  define KEY_PERSPECT	0x0033
+#  define KEY_ARROW_L	0xff51
+#  define KEY_ARROW_R	0xff53
+#  define KEY_ARROW_T	0xff52
+#  define KEY_ARROW_D	0xff54
+#  define KEY_MINUS		0x002d
+#  define KEY_PLUS		0x003d
+# elif __APPLE__
+#  define SCREEN_WIDTH	800
+#  define SCREEN_HEIGHT	800
+#  define KEY_ECHAP		0x35
+#  define KEY_X			0x7
+#  define KEY_Y			0x10
+#  define KEY_Z			0x6
+#  define KEY_ZOOM		0x23
+#  define KEY_ROTATE	0xf
+#  define KEY_TRANSLATE	0x11
+#  define KEY_HEIGHT	0x4
+#  define KEY_ISOMETRIC	0x12
+#  define KEY_FLAT_ISO	0x13
+#  define KEY_PERSPECT	0x14
+#  define KEY_ARROW_L	0x7b
+#  define KEY_ARROW_R	0x7c
+#  define KEY_ARROW_T	0x7e
+#  define KEY_ARROW_D	0x7d
+#  define KEY_MINUS		0x1b
+#  define KEY_PLUS		0x18
+# endif
 
 # define ISOMETRIC_PROJECTION	0
 # define FLAT_ISO_PROJECTION	1
@@ -176,6 +197,8 @@ void		ft_freemap(t_map map);
 void		ft_freeall(t_fdf fdf);
 void		ft_exit(t_fdf fdf, int status);
 
+void		ft_freemlx(t_mlx mlx);
+
 void		ft_display_parsed_map(t_map map);
 void		ft_print_draw_debug_info(t_fdf *fdf);
 
@@ -185,7 +208,7 @@ void		ft_reframe(t_fdf *fdf);
 void		ft_draw(t_fdf *fdf);
 
 t_gradient	ft_get_gradient(t_fdf *fdf, t_3dpt pt1, t_3dpt pt2);
-int			ft_color_mix(int color1, int color2, double mix);	
+int			ft_color_mix(int color1, int color2, double mix);
 
 int			ft_on_keypressed(int key, t_fdf *fdf);
 void		ft_on_keymode_keypressed(t_fdf *fdf, int key);

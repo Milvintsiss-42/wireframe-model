@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-stra <ple-stra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ladloff <ladloff@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:55:02 by ple-stra          #+#    #+#             */
-/*   Updated: 2022/05/09 16:43:51 by ple-stra         ###   ########.fr       */
+/*   Updated: 2023/06/17 12:25:30 by ladloff          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	ft_init_mlx(t_fdf *fdf)
 		ft_exit(*fdf, ft_perror(ERR_FAILED_INIT_MLX));
 }
 
+#ifdef __linux__
+
 static void	ft_create_window(t_fdf *fdf)
 {
 	t_mlx	*mlx;
@@ -41,6 +43,23 @@ static void	ft_create_window(t_fdf *fdf)
 	if (!mlx->window)
 		ft_exit(*fdf, ft_perror(ERR_FAILED_OP_WIN_MLX));
 }
+
+#elif __APPLE__
+
+static void	ft_create_window(t_fdf *fdf)
+{
+	t_mlx	*mlx;
+
+	mlx = &fdf->mlx;
+	mlx->win_width = SCREEN_WIDTH;
+	mlx->win_height = SCREEN_HEIGHT;
+	mlx->window = mlx_new_window(mlx->mlx, mlx->win_width, mlx->win_height,
+			PROGRAM_NAME);
+	if (!mlx->window)
+		ft_exit(*fdf, ft_perror(ERR_FAILED_OP_WIN_MLX));
+}
+
+#endif
 
 void	ft_display_map(t_fdf *fdf)
 {
