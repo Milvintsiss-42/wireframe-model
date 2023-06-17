@@ -5,3 +5,6 @@
 	path = libft
 	url = https://github.com/Milvintsiss-42/libft.git
 	branch = v1.2.0
+[submodule "minilibx-OpenGL"]
+	path = minilibx-OpenGL
+	url = git@github.com:MalwarePup/minilibx-OpenGL.git
